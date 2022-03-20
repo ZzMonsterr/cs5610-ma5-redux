@@ -4,10 +4,10 @@
     border: 1px solid grey;
 }
 
-#white {
+.white {
     background-color: white;
 }
 
-#black {
+.black {
     background-color: black;
 }

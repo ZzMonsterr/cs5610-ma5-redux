@@ -1,34 +1,27 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 import './square.css'
+import {useSelector, useDispatch} from 'react-redux'
+import {changeColor, increment, decrement} from '../actions'
 
-export default class Square extends Component {
+export default function Square(props) {
 
-    constructor(props) {
-        super(props);
-        this.color = "white";
-    }
+    const {id} = props
+    const color = useSelector(state => state.color)
+    const dispatch = useDispatch();
 
-    static propTypes = {
-        changeCount: PropTypes.func.isRequired
-    }
-
-    setColor = (c) => {this.color = c};
-
-    update = () => {
-        if (this.color === "white") {
-            this.setColor("black");
-            this.props.changeCount(true);  // increment 1
-        } else {
-            this.setColor("white");
-            this.props.changeCount(false); // decrement 1
+    function update() { 
+        if (color[id]) {
+            dispatch(increment())
         }
+        else {
+            dispatch(decrement())
+        }
+        dispatch(changeColor(id))
     }
 
-    render() {
-        return (
-            <div className="square" id={this.color} onClick={this.update} />
-        );
-    }
+    return (
+        <div className={color[id] ? "square white" : "square black"}
+            onClick={update} />
+    );
 
 }

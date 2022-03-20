@@ -9,7 +9,7 @@
 import {INCREMENT, DECREMENT} from './action-types'
 
 export function counter(state = 0, action) {
-    console.log('counter() - old state: ', state, "; current action: ", action)
+    // console.log('counter() - old state: ', state, "; current action: ", action)
 
     switch (action.type) {
         case INCREMENT:

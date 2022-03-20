@@ -1,39 +1,22 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 import Square from './square'
 import './grid.css'
+import {useSelector} from 'react-redux'
 
-export default class Grid extends Component {
+export default function Grid () {
 
-    static propTypes = {
-        count: PropTypes.number.isRequired,
-        increment: PropTypes.func.isRequired,
-        decrement: PropTypes.func.isRequired
-    }
+    const counter = useSelector(state => state.counter)
 
-    changeCount = (is_increment) => {
-        // const {count} = this.props
-        // console.log(count);
-        if (is_increment) {
-            this.props.increment(1);
-        } else {
-            this.props.decrement(1);
-        }
-    }
-
-    render() {
-        const {count} = this.props
-
-        return (
-            <div className="container">
-                <h1>Count: {count}</h1>
-                <div className="grid">
-                    <Square changeCount={this.changeCount}/>
-                    <Square changeCount={this.changeCount}/>
-                    <Square changeCount={this.changeCount}/>
-                    <Square changeCount={this.changeCount}/>
-                </div>
+    return (
+        <div className="container">
+            <h1>Count: {counter}</h1>
+            <div className="grid">
+                <Square id="1" />
+                <Square id="2" />
+                <Square id="3" />
+                <Square id="4" />
             </div>
-        );
-    }
+        </div>
+    );
+
 }
